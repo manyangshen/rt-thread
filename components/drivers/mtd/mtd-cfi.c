@@ -1138,7 +1138,7 @@ static rt_err_t cfi_flash_dev_probe(struct rt_device *dev, struct cfi_flash_devi
 
     for (int i = 0; i < num_erase_regions; ++i)
     {
-        if (i > RT_ARRAY_SIZE(query->erase_region_info))
+        if (i >= RT_ARRAY_SIZE(query->erase_region_info))
         {
             LOG_E("Too many %d (> %d) erase regions found",
                    num_erase_regions, RT_ARRAY_SIZE(query->erase_region_info));
@@ -1158,10 +1158,10 @@ static rt_err_t cfi_flash_dev_probe(struct rt_device *dev, struct cfi_flash_devi
                 break;
             }
 
-            if (sect_count > RT_ARRAY_SIZE(fdev->sect))
+            if (sect_count >= RT_ARRAY_SIZE(fdev->sect))
             {
-                LOG_E("Too many %d (> %d) sector found",
-                       sect_count, RT_ARRAY_SIZE(fdev->sect));
+                LOG_E("Too many sectors found (maximum %d)",
+                       RT_ARRAY_SIZE(fdev->sect));
                 break;
             }
 
