@@ -1161,7 +1161,7 @@ static rt_err_t cfi_flash_dev_probe(struct rt_device *dev, struct cfi_flash_devi
             if (sect_count >= RT_ARRAY_SIZE(fdev->sect))
             {
                 LOG_E("Too many sectors found (maximum %d)",
-                       RT_ARRAY_SIZE(fdev->sect));
+                      RT_ARRAY_SIZE(fdev->sect));
                 break;
             }
 
